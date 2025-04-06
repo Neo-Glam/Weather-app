@@ -6,6 +6,6 @@ export function inputLocation(){
     const validationRecherche = document.querySelector("#validationRecherche")
 
     validationRecherche.addEventListener('click',()=>{
-        fetchData(locationInput.value)
+        fetchData(locationInput.value);
     });
 }
