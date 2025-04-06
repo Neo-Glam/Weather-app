@@ -1,4 +1,5 @@
 import "./style.css";
-import { fetchData } from "./fetchData";
+import { inputLocation } from "./inputLocation";
 
-fetchData("Paris");
+inputLocation();
+

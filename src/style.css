@@ -79,6 +79,7 @@ button{
 
 #validationRecherche{
     background: none;
+    cursor: pointer;
 }
 
 input{
