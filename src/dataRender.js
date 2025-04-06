@@ -1,16 +1,36 @@
-export  async function dataRender(weatherData) {
+export function dataRender(weatherData, unit) {
+  let tempParam = unit;
+
   const lieu = document.querySelector("#lieu");
-  lieu.innerText = await weatherData.resolvedAddress;
+  lieu.innerText = weatherData.resolvedAddress;
 
   const condition = document.querySelector("#condition");
-  condition.innerText = await weatherData.currentConditions.conditions;
+  condition.innerText = weatherData.currentConditions.conditions;
 
   const temperature = document.querySelector("#tempareture");
-  temperature.innerText = await weatherData.currentConditions.temp;
+  if (tempParam === "°F")
+    temperature.innerText =
+      (weatherData.currentConditions.temp) + tempParam;
+  else
+    temperature.innerText =
+      (Math.floor((((weatherData.currentConditions.temp - 32) * 5) / 9))) + tempParam;
 
   const precipitation = document.querySelector("#precipitation");
-  precipitation.innerText = await weatherData.currentConditions.precip;
+  precipitation.innerText = (weatherData.currentConditions.precip) + "%";
 
   const humidite = document.querySelector("#humidite");
-  humidite.innerText = await weatherData.currentConditions.humidity;
+  humidite.innerText = (weatherData.currentConditions.humidity) + "%";
+
+  const unitToggleButton = document.querySelector("#unitToggleButton");
+  unitToggleButton.innerText = tempParam;
+
+  unitToggleButton.addEventListener("click", () => {
+    if (tempParam === "°F") {
+      tempParam = "°C";
+      dataRender(weatherData, tempParam);
+    } else {
+      tempParam = "°F";
+      dataRender(weatherData, tempParam);
+    }
+  });
 }
